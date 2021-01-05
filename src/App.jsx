@@ -1,50 +1,23 @@
-import React, { useEffect, useMemo } from 'react';
+import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
-import useFetch from './services/hooks/useFetch';
+import AppProvider from './hooks';
 
-import Container from './components/Container';
-import Loading from './components/Loading';
+import Routes from './routes';
 
 import theme from './styles/theme';
 import GlobalStyles from './styles/global';
-import Product from './components/Product';
 
-const App = () => {
-  const { data: dataLessThan, loading: loadingLessThan, get: getLessThan } = useFetch();
-
-  useEffect(() => {
-    const fetch = async () => {
-      await getLessThan({ url: '/lessThan' });
-    };
-    fetch();
-  }, [getLessThan]);
-
-  const parsedData = useMemo(() => {
-    const data = dataLessThan?.items || [];
-    return data;
-  }, [dataLessThan]);
-
-  return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyles />
-
-      <Container>
-        {loadingLessThan && <Loading />}
-
-        {!loadingLessThan &&
-          parsedData.length &&
-          parsedData.map((item) => (
-            <Product
-              key={item.id}
-              name={item.name}
-              price={item.price}
-              image={item.imageUrl}
-            />
-          ))}
-      </Container>
-    </ThemeProvider>
-  );
-};
+const App = () => (
+  <Router>
+    <AppProvider>
+      <ThemeProvider theme={theme}>
+        <Routes />
+        <GlobalStyles />
+      </ThemeProvider>
+    </AppProvider>
+  </Router>
+);
 
 export default App;

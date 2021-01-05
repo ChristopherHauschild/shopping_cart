@@ -7,11 +7,13 @@ import Divider from '../Divider';
 
 import { Wrapper } from './styles';
 
-const Container = () => (
+const Container = ({ children }) => (
   <Wrapper>
     <Header />
     <Divider />
-    <span>Conteúdo</span>
+
+    {children}
+
     <Divider />
     <Footer />
   </Wrapper>

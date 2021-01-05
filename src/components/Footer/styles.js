@@ -18,7 +18,7 @@ export const Total = styled.div`
     padding: 0px ${theme.spacings.small};
 
     strong {
-      font-size: ${theme.font.sizes.xxlarge};
+      font-size: 25px;
     }
   `}
 `;
@@ -30,7 +30,7 @@ export const Button = styled.button`
     justify-content: center;
 
     width: ${`calc(100% - ${theme.spacings.xlarge})`};
-    padding: ${theme.spacings.xxsmall} 0px;
+    padding: ${theme.spacings.xsmall} 0px;
 
     background: ${theme.colors.primary};
     border-radius: ${theme.border.radius.medium};
@@ -42,7 +42,7 @@ export const Button = styled.button`
 
     strong {
       color: ${theme.colors.white};
-      font-size: ${theme.font.sizes.xxlarge};
+      font-size: 25px;
     }
   `}
 `;

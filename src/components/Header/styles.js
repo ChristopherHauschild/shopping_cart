@@ -9,6 +9,7 @@ export const Wrapper = styled.header`
     width: 100%;
 
     h1 {
+      color: ${theme.colors.black};
       font-size: ${theme.font.sizes.xxlarge};
     }
   `}

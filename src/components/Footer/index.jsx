@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import { useProducts } from '../../hooks/products';
 
@@ -6,10 +6,12 @@ import { toCurrency } from '../../utils/currencyFormatter';
 
 import Divider from '../Divider';
 
-import { Wrapper, Total, Button } from './styles';
+import { Wrapper, Total, FreeShipping, Button } from './styles';
 
 const Footer = () => {
   const { totalPrice } = useProducts();
+
+  const hasFreeShipping = useMemo(() => totalPrice / 100 > 10, [totalPrice]);
 
   return (
     <Wrapper>
@@ -17,6 +19,12 @@ const Footer = () => {
         <strong>Total</strong>
         <strong>{toCurrency(totalPrice)}</strong>
       </Total>
+
+      {hasFreeShipping && (
+        <FreeShipping>
+          <span>Parabéns, sua compra tem frete grátis!</span>
+        </FreeShipping>
+      )}
 
       <Divider />
 

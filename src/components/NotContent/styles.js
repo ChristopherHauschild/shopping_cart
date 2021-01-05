@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { FaSpinner } from 'react-icons/fa';
+import { FaBan } from 'react-icons/fa';
 
 export const Wrapper = styled.div`
   ${({ theme }) => css`
@@ -20,19 +20,11 @@ export const Wrapper = styled.div`
   `}
 `;
 
-export const Icon = styled(FaSpinner)`
+export const Icon = styled(FaBan)`
   ${({ theme }) => css`
     margin-bottom: ${theme.spacings.xsmall};
 
     color: ${theme.colors.black};
     font-size: ${theme.font.sizes.xxxlarge};
-
-    animation: rotate 2s linear infinite;
-
-    @keyframes rotate {
-      to {
-        transform: rotate(360deg);
-      }
-    }
   `}
 `;

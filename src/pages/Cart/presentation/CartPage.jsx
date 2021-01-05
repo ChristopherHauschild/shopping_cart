@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Container from '../../../components/Container';
 import Product from '../../../components/Product';
 import Loading from '../../../components/Loading';
+import NotContent from '../../../components/NotContent';
 
 const CartPage = ({ data, loading }) => (
   <Container>
@@ -19,6 +20,8 @@ const CartPage = ({ data, loading }) => (
           image={item.imageUrl}
         />
       ))}
+
+    {!loading && !data.length && <NotContent />}
   </Container>
 );
 

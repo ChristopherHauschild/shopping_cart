@@ -46,12 +46,14 @@ export const Infos = styled.div`
 
 export const Name = styled.strong`
   ${({ theme }) => css`
+    color: ${theme.colors.black};
     font-size: ${theme.font.sizes.xlarge};
   `}
 `;
 
 export const Price = styled.strong`
   ${({ theme }) => css`
+    color: ${theme.colors.black};
     font-size: ${theme.font.sizes.large};
     font-weight: ${theme.font.medium};
   `}

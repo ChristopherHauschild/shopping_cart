@@ -18,7 +18,27 @@ export const Total = styled.div`
     padding: 0px ${theme.spacings.small};
 
     strong {
+      color: ${theme.colors.black};
       font-size: 25px;
+    }
+  `}
+`;
+
+export const FreeShipping = styled.div`
+  ${({ theme }) => css`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: ${theme.spacings.xsmall};
+    padding: ${theme.spacings.xxsmall} ${theme.spacings.small};
+
+    background: ${theme.colors.inverseGreen};
+    border-radius: ${theme.border.radius.small};
+
+    span {
+      color: ${theme.colors.green};
+      font-size: ${theme.font.sizes.large};
     }
   `}
 `;

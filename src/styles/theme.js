@@ -29,6 +29,8 @@ const theme = {
     mainBg: '#D2D6E6',
     white: '#FAFAFA',
     black: '#090223',
+    green: '#39c560',
+    inverseGreen: '#39c56014',
     lightGray: '#EAEAEA',
   },
   spacings: {

@@ -58,7 +58,8 @@ export const Button = styled.button`
     outline: none;
     box-shadow: none;
 
-    cursor: pointer;
+    opacity: ${(props) => (props.disabled ? '0.5' : '1')};
+    cursor: ${(props) => (props.disabled ? 'not-allowed' : 'pointer')};
 
     strong {
       color: ${theme.colors.white};

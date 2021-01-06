@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo } from 'react';
+import { useQueryParams, StringParam } from 'use-query-params';
 
 import { useProducts } from '../../hooks/products';
 
@@ -7,31 +8,41 @@ import useFetch from '../../services/hooks/useFetch';
 import CartPage from './presentation/CartPage';
 
 const Cart = () => {
-  const { data: dataLessThan, loading: loadingLessThan, get: getLessThan } = useFetch();
   const { sumPrice } = useProducts();
+
+  const { data: dataLessThan, loading: loadingLessThan, get: getLessThan } = useFetch();
+  const { data: dataMoreThan, loading: loadingMoreThan, get: getMoreThan } = useFetch();
+
+  const [query] = useQueryParams({
+    _type: StringParam,
+  });
 
   useEffect(() => {
     const fetch = async () => {
       await getLessThan({ url: '/lessThan' });
+      await getMoreThan({ url: '/moreThan' });
     };
     fetch();
-  }, [getLessThan]);
+  }, [getLessThan, getMoreThan]);
 
   useEffect(() => {
-    if (!dataLessThan) return;
+    const data = query?._type !== 'moreThan' ? dataLessThan : dataMoreThan;
 
-    const data = dataLessThan?.items || [];
-    const total = data.reduce((acc, cur) => acc + cur?.price, 0);
+    if (!data) return;
+
+    const dataItems = data?.items || [];
+    const total = dataItems.reduce((acc, cur) => acc + cur?.price, 0);
 
     sumPrice(total);
-  }, [dataLessThan, sumPrice]);
+  }, [query, dataLessThan, dataMoreThan, sumPrice]);
 
   const parsedData = useMemo(() => {
-    const data = dataLessThan?.items || [];
+    const data =
+      query?._type !== 'moreThan' ? dataLessThan?.items || [] : dataMoreThan?.items || [];
     return data;
-  }, [dataLessThan]);
+  }, [query, dataLessThan, dataMoreThan]);
 
-  return <CartPage data={parsedData} loading={loadingLessThan} />;
+  return <CartPage data={parsedData} loading={loadingLessThan || loadingMoreThan} />;
 };
 
 export default Cart;

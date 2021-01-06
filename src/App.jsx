@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { QueryParamProvider } from 'use-query-params';
 import { ThemeProvider } from 'styled-components';
 
 import AppProvider from './hooks';
@@ -11,12 +12,14 @@ import GlobalStyles from './styles/global';
 
 const App = () => (
   <Router>
-    <AppProvider>
-      <ThemeProvider theme={theme}>
-        <Routes />
-        <GlobalStyles />
-      </ThemeProvider>
-    </AppProvider>
+    <QueryParamProvider ReactRouterRoute={Route}>
+      <AppProvider>
+        <ThemeProvider theme={theme}>
+          <Routes />
+          <GlobalStyles />
+        </ThemeProvider>
+      </AppProvider>
+    </QueryParamProvider>
   </Router>
 );
 
